@@ -5,6 +5,7 @@ TextStyle kHeaderStyle() => TextStyle(fontSize: 20, fontWeight: FontWeight.bold)
 TextStyle kSHeaderStyle() => TextStyle(fontSize: 16, fontWeight: FontWeight.w600);
 TextStyle kSmallStyle() => TextStyle(fontSize: 14);
 TextStyle k16Style() => TextStyle(fontSize: 16);
+TextStyle kLargeStyle() => TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: kWhiteColor);
 TextStyle linkTextStyle() => TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16);
 TextStyle kWhiteTextStyle() => TextStyle(color: kWhiteColor);
 double iconSize() => 35;

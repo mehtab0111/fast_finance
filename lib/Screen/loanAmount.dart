@@ -16,6 +16,7 @@ class LoanAmount extends StatefulWidget {
 class _LoanAmountState extends State<LoanAmount> {
 
   double _currentSliderValue = 50000;
+  int tenure = 24;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +25,52 @@ class _LoanAmountState extends State<LoanAmount> {
       child: Scaffold(
         // backgroundColor: Colors.transparent,
         appBar: AppBar(
-          // backgroundColor: Colors.transparent,
+          backgroundColor: kMainColor,
           title: Text(widget.title),
         ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.all(0.0),
+                child: Container(
+                  padding: EdgeInsets.all(10.0),
+                  // decoration: roundedContainerDesign(context),
+                  decoration: BoxDecoration(
+                    color: kMainColor
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(30.0),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.currency_rupee_outlined, color: k2MainColor),
+                              Text(_currentSliderValue.toStringAsFixed(2), style: kLargeStyle().copyWith(
+                                color: Colors.black
+                              )),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 30.0),
+                      Text('${widget.title} starts from ₹5,0000 to ₹5,00,000 with 13% p.a.',
+                          style: kSHeaderStyle().copyWith(color: kWhiteColor),
+                          textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.0),
               Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text('Select the loan amount'),
@@ -50,41 +90,54 @@ class _LoanAmountState extends State<LoanAmount> {
                 },
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.symmetric(horizontal: 12.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('5000', style: kSmallStyle()),
+                    Text('500000', style: kSmallStyle()),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20.0),
+              Center(child: Text('Select Tenure Amount', style: kSmallStyle())),
+              SizedBox(height: 5.0),
+              Center(
                 child: Container(
-                  padding: EdgeInsets.all(10.0),
-                  decoration: roundedContainerDesign(context),
-                  // decoration: BoxDecoration(
-                  //   borderRadius: BorderRadius.circular(10.0),
-                  //   gradient: LinearGradient(
-                  //     colors: [
-                  //       kMainColor,
-                  //       k2MainColor,
-                  //     ],
-                  //   ),
-                  // ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      CircleAvatar(
-                        radius: 25.0,
-                        // backgroundColor: kWhiteColor,
-                        child: Icon(Icons.currency_rupee_outlined),
+                      IconButton(
+                        onPressed: (){
+                          setState(() {
+                            tenure--;
+                          });
+                        },
+                        icon: Icon(Icons.remove),
                       ),
-                      SizedBox(width: 10.0),
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(_currentSliderValue.toStringAsFixed(2), style: kHeaderStyle()),
-                            Text('${widget.title} starts from ₹5,0000 to ₹5,00,000 with 13% p.a.')
-                          ],
-                        ),
+                      Column(
+                        children: [
+                          Text('$tenure', style: TextStyle(fontSize: 24),),
+                          Text('MONTHS', style: kSmallStyle()),
+                        ],
+                      ),
+                      IconButton(
+                        onPressed: (){
+                          setState(() {
+                            tenure++;
+                          });
+                        },
+                        icon: Icon(Icons.add),
                       ),
                     ],
                   ),
                 ),
               ),
+              SizedBox(height: 20.0),
 
               amountContainer(
                 context: context,
@@ -104,6 +157,7 @@ class _LoanAmountState extends State<LoanAmount> {
                   amount: '200000',
                   desc: 'Higher limit and lower charges'
               ),
+              SizedBox(height: 70.0),
             ],
           ),
         ),

@@ -17,27 +17,40 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: customDesignShade(),
+      // decoration: customDesignShade(),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        // backgroundColor: Colors.transparent,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: kMainColor,
           elevation: 0.0,
           centerTitle: true,
-          title: Text('Sign In', style: kWhiteTextStyle()),
+          title: Text('Sign In'),
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
-                height: 50.0,
-                width: MediaQuery.of(context).size.width,
+              Container(
+                color: kMainColor,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 30.0,
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                    Text('Welcome to Fast Finance',
+                      style: kHeaderStyle(),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 10.0),
+                    Text('Get Instant\nPersonal loan up to',
+                      textAlign: TextAlign.center,
+                    ),
+                    Text('₹4 lakhs', style: kHeaderStyle()),
+                    SizedBox(height: 30.0),
+                  ],
+                ),
               ),
-              Text(
-                'Welcome to\nFast Finance',
-                style: TextStyle(fontSize: 50, color: kWhiteColor),
-                textAlign: TextAlign.center,
-              ),
+              SizedBox(height: 30.0),
               SizedBox(
                 width: MediaQuery.of(context).size.width*0.9,
                 child: Column(

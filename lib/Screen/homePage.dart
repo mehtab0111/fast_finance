@@ -2,10 +2,10 @@ import 'package:fast_finance/Components/database.dart';
 import 'package:fast_finance/Screen/loanAmount.dart';
 import 'package:fast_finance/Screen/myLoan.dart';
 import 'package:fast_finance/Screen/profilePage.dart';
+import 'package:fast_finance/Screen/referAndEarn.dart';
 import 'package:fast_finance/Theme/colors.dart';
 import 'package:fast_finance/Theme/style.dart';
 import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,13 +24,18 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           // backgroundColor: Colors.transparent,
           centerTitle: true,
-          // leading: Image.asset('images/app_logo.png'),
-          title: Text('Fast Finance'.toUpperCase()),
+          leadingWidth: 100,
+          leading: Image.asset('images/app_logo.png'),
+          // title: Text('Fast Finance'.toUpperCase()),
+          actions: [
+            IconButton(onPressed: (){}, icon: Icon(Icons.info_outline)),
+            IconButton(onPressed: (){}, icon: Icon(Icons.notifications_outlined)),
+            IconButton(onPressed: (){}, icon: Icon(Icons.settings_outlined)),
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Text('Loans', style: kSHeaderStyle()),
               GridView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -105,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                 title: 'Refer & Earn',
                 subText: 'Refer this app and earn rewards',
                 onClick: (){
-                  Share.share('Check out this app and get instant loan easily https://example.com');
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ReferAndEarn()));
                 },
               ),
               customIconButton(
@@ -166,7 +171,7 @@ Padding customIconButton({required BuildContext context,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(title, style: kSHeaderStyle()),
-                  Text(subText),
+                  Text(subText, style: kSmallStyle()),
                 ],
               ),
             ),
